@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    
 </head>
 <body>
-    <script src="js/resources.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/engine.js"></script>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="text-center">
+                <h1>Frogger game</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 instructions">
+                <h2>Instructions</h2>
+                <p class="text-justify"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rhoncus eget magna ac tincidunt. Etiam laoreet lacus magna, a volutpat lorem convallis vitae. Nulla scelerisque lacinia leo et imperdiet. 
+                    In luctus turpis eget sapien vulputate molestie. Fusce sit amet justo varius, aliquet leo ut, interdum orci. Phasellus scelerisque porttitor cursus. Aliquam dolor mi, rutrum sed orci id, egestas finibus velit.
+                    Sed neque tortor, tincidunt ac tempus nec, fringilla at ex. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                </p>
+            </div>
+            <div class="col-md-6" id="gameCanvas">
+                    <script src="js/resources.js"></script>
+                    <script src="js/app.js"></script>
+                    <script src="js/engine.js"></script>
+            </div>
+        </div>
 </body>
 </html>
