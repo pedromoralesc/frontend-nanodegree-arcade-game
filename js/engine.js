@@ -82,7 +82,6 @@ var Engine = (function (global) {
      */
     function update(dt) {
         if (current == "on") {
-            console.log("update")
             updateEntities(dt);
             checkCollisions();
         }
@@ -95,17 +94,21 @@ var Engine = (function (global) {
                     player.lives--
                     player.x = 200;
                     player.y = 400;
-                    current = 'off';
+                }
+            }if (player.lives == 0) {
+                current = "off"
+                if(window.confirm("want to play again?")){
+                    current = "on";
+                    reset();
+                }else{
+                    current="charScreen"
                 }
             }
             
         });
     }
 
-    // if (player.lives == 0) {
-    //     current = "off"
-    //     console.log('you are dead')
-    // }
+    
 
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
@@ -167,17 +170,16 @@ var Engine = (function (global) {
         ctx.font = "22px Verdana";
         ctx.textAlign = "left";
         ctx.textBaseline = "top";
-       ctx.fillText("Lives: " + player.lives, 210, 64);
-        if (current = "charScreen") {
-            console.log("render sel")
-            renderSelectionScreen();
-        } else if (current == "off") {
-            renderFinalScreen();
-        } else {
-            console.log("render selected")
+        ctx.fillText("Lives: " + player.lives, 210, 64);
 
-            renderEntities();
-        }
+            if (current == "charScreen") {
+                charSelection();
+                renderSelectionScreen();
+            } else if (current == "on") {
+                renderEntities();
+            } else {
+                renderFinalScreen();
+            }
     }
     
  
@@ -187,16 +189,16 @@ var Engine = (function (global) {
      */
     // CHARACTER SELECTION
 
-
+    function charSelection(){
         for (let i = 0; i < char.length; i++) {
             char[i].addEventListener("click", function(e){
                     current="on";
                     player.selection = e.target.alt
                     charArr = [
-                        ["1", 'images/char-cat-girl.png'],
-                        ["2", 'images/char-horn-girl.png'],
-                        ["3", 'images/char-pink-girl.png'],
-                        ["4", 'images/char-boy.png'],
+                        ["1", 'images/char-boy.png'],
+                        ["2", 'images/char-cat-girl.png'],
+                        ["3", 'images/char-horn-girl.png'],
+                        ["4", 'images/char-pink-girl.png'],
                         ["5", 'images/char-princess-girl.png']
                     ];
                         for (i=0; i< charArr.length; i++) {
@@ -207,14 +209,18 @@ var Engine = (function (global) {
                             reset();
                          })
                     }
-        if(current = "off"){
-            if(window.confirm("continue playing?")){
-                current= "on"
-                reset();
-            }else{
-                current= "charScreen"
-            }
-        }
+                }
+
+               
+        // if(current = "off"){
+        //     let cont = prompt("continue playing?");
+        //     if(cont.toLowerCase() == "y"){
+        //         current= "on"
+        //         reset();
+        //     }else{
+        //         current= "charScreen"
+        //     }
+        // }
     
     //--------
 
