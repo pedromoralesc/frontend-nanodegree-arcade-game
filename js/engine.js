@@ -97,12 +97,18 @@ var Engine = (function (global) {
                 }
             }if (player.lives == 0) {
                 current = "off"
-                if(window.confirm("want to play again?")){
-                    current = "on";
-                    reset();
-                }else{
-                    current="charScreen"
-                }
+                $(function () {
+                    $(document).ready(function () {
+                        $('#finalModal').modal("show").on('click', function(e){
+                            if(e.target.id == "yes"){
+                                current = "on";
+                                reset();
+                            }else{
+                                current="charScreen"
+                            }
+                        })
+                    })
+                });
             }
             
         });
@@ -190,6 +196,12 @@ var Engine = (function (global) {
     // CHARACTER SELECTION
 
     function charSelection(){
+        $(function () {
+            $(document).ready(function () {
+                $('#introModal').modal("show")
+            })
+        });
+
         for (let i = 0; i < char.length; i++) {
             char[i].addEventListener("click", function(e){
                     current="on";
@@ -211,17 +223,6 @@ var Engine = (function (global) {
                     }
                 }
 
-               
-        // if(current = "off"){
-        //     let cont = prompt("continue playing?");
-        //     if(cont.toLowerCase() == "y"){
-        //         current= "on"
-        //         reset();
-        //     }else{
-        //         current= "charScreen"
-        //     }
-        // }
-    
     //--------
 
     function renderSelectionScreen(){
@@ -254,7 +255,6 @@ var Engine = (function (global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        console.log(current);
          allEnemies = [];
 
         let pushEnemies = function () {
