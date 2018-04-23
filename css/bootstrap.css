@@ -4837,8 +4837,9 @@ input[type="button"].btn-block {
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: rgb(86, 61, 124);
-  color: paleturquoise;
+  background: -moz-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(240,136,9,1) 51%);  
+  color: rgb(214, 211, 211);
+  text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
   border-radius: 0.3rem;
 }
 

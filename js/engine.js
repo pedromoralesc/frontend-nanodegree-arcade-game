@@ -13,7 +13,7 @@
  * writing app.js a little simpler to work with.
  */
 
-var Engine = (function(global) {
+var Engine = (function (global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
@@ -22,6 +22,8 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
+        current = "charScreen",
+        playerCharacter = '',
         lastTime;
 
     canvas.width = 505;
@@ -63,6 +65,7 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
+
         reset();
         lastTime = Date.now();
         main();
@@ -78,9 +81,31 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-        updateEntities(dt);
-         checkCollisions();
+        if (current == "on") {
+            console.log("update")
+            updateEntities(dt);
+            checkCollisions();
+        }
     }
+    function checkCollisions() {
+
+        allEnemies.forEach(function (enemy) {
+            if (player.x >= enemy.x - 25 && player.x <= enemy.x + 25) {
+                if (player.y >= enemy.y - 25 && player.y <= enemy.y + 25) {
+                    player.lives--
+                    player.x = 200;
+                    player.y = 400;
+                    current = 'off';
+                }
+            }
+            
+        });
+    }
+
+    // if (player.lives == 0) {
+    //     current = "off"
+    //     console.log('you are dead')
+    // }
 
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
@@ -90,7 +115,7 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        allEnemies.forEach(function(enemy) {
+        allEnemies.forEach(function (enemy) {
             enemy.update(dt);
         });
         player.update();
@@ -107,19 +132,19 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
-            ],
+            'images/water-block.png',   // Top row is water
+            'images/stone-block.png',   // Row 1 of 3 of stone
+            'images/stone-block.png',   // Row 2 of 3 of stone
+            'images/stone-block.png',   // Row 3 of 3 of stone
+            'images/grass-block.png',   // Row 1 of 2 of grass
+            'images/grass-block.png'    // Row 2 of 2 of grass
+        ],
             numRows = 6,
             numCols = 5,
             row, col;
-        
+
         // Before drawing, clear existing canvas
-        ctx.clearRect(0,0,canvas.width,canvas.height)
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -137,19 +162,81 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
+        // LIVES
+        ctx.fillStyle = "rgba(210,255,82,1)";
+        ctx.font = "22px Verdana";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+       ctx.fillText("Lives: " + player.lives, 210, 64);
+        if (current = "charScreen") {
+            console.log("render sel")
+            renderSelectionScreen();
+        } else if (current == "off") {
+            renderFinalScreen();
+        } else {
+            console.log("render selected")
 
-        renderEntities();
+            renderEntities();
+        }
     }
-
+    
+ 
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
      * on your enemy and player entities within app.js
      */
+    // CHARACTER SELECTION
+
+
+        for (let i = 0; i < char.length; i++) {
+            char[i].addEventListener("click", function(e){
+                    current="on";
+                    player.selection = e.target.alt
+                    charArr = [
+                        ["1", 'images/char-cat-girl.png'],
+                        ["2", 'images/char-horn-girl.png'],
+                        ["3", 'images/char-pink-girl.png'],
+                        ["4", 'images/char-boy.png'],
+                        ["5", 'images/char-princess-girl.png']
+                    ];
+                        for (i=0; i< charArr.length; i++) {
+                                if (charArr[i][0] === player.selection) {
+                                    playerCharacter = charArr[i][1]
+                                }
+                            } 
+                            reset();
+                         })
+                    }
+        if(current = "off"){
+            if(window.confirm("continue playing?")){
+                current= "on"
+                reset();
+            }else{
+                current= "charScreen"
+            }
+        }
+    
+    //--------
+
+    function renderSelectionScreen(){
+        ctx.fillStyle = "rgb(250, 250, 250)";
+        ctx.font = "32px Helvetica";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillText("Selecting  charcarter", 250, 475);
+    }
+    function renderFinalScreen(){
+        ctx.fillStyle = "rgb(250, 250, 250)";
+        ctx.font = "32px Helvetica";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        ctx.fillText("You loose", 250, 475);
+    }
     function renderEntities() {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
-        allEnemies.forEach(function(enemy) {
+        allEnemies.forEach(function (enemy) {
             enemy.render();
         });
 
@@ -161,7 +248,18 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        console.log(current);
+         allEnemies = [];
+
+        let pushEnemies = function () {
+            allEnemies.push(new Enemy(0, 60))
+            allEnemies.push(new Enemy(0, 140))
+            allEnemies.push(new Enemy(0, 220))
+
+        }
+        pushEnemies();
+
+         player = new Player(playerCharacter);
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -173,7 +271,13 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+        'images/Star.png'
     ]);
     Resources.onReady(init);
 
