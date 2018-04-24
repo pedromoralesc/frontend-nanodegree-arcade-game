@@ -1,6 +1,5 @@
 
 # Udacity Arcade Game
-===============================
 This is the tipical froger game  we played as children, is simple but really fun!.
 
 ## Objective
@@ -8,13 +7,12 @@ Welcome to this simple but fun Arcade Game. The objective is to get your charact
 ![snippet](imgages/screenShot.png)
 
 ## Instructions
-Instructions.
 
-* 1. Select your character using the pointer
-* 2.Use the arrow keys in your keyboard to move your character
-* 3.Avoid enemy contact, otherwise you will loose a live and your character will return to the beginning
-* 4.Reach the top edge of the screen to win the game
-* 5.Either you win or loose you will be given an option to continue with the previus selected character or to select another character, choose whatever you want but remember always to have fun!
+* 1.Select your character using the pointer.
+* 2.Use the arrow keys in your keyboard to move your character.
+* 3.Avoid enemy contact, otherwise you will loose a live and your character will return to the beginning.
+* 4.Reach the top edge of the screen to win the game.
+* 5.Either you win or loose you will be given an option to continue with the previus selected character or to select another character, choose whatever you want but remember always to have fun!.
 
 ## Code explanation
 This project is oriented to implement everything we learned about object oriented programming, so we wrapped all the information of the players and the enemies in objects, the game engine, provided by Udacity, was designed to work with both objects. We create a render function who draw in the HTML canvas the player character, the enemies and the background of the board. We also write a update function, who multiply the enemy speed by the delta time, which allows to render the game equal in every computer, despite their processing power. Update function also allows the enemies to reappear in the board ones they reach the left edge. It works the same with the player object.
