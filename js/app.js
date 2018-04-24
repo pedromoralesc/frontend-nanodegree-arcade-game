@@ -56,13 +56,25 @@ Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if(this.y <= 0){
+        $(function () {
+            $(document).ready(function () {
+                $('#winningModal').modal("show")
+            })
+        });
+    }
     // ----UPP----
     if(this.pressedKey === "up" && this.y > 0){//x>0 checks the left edge
         this.y -= 90;
     }
         if(this.y < 0){
              this.x = 200;
-             this.y = 400;   
+             this.y = 400; 
+             $(function () {
+                $(document).ready(function () {
+                    $('#winningModal').modal("show")
+                })
+            });  
         }
     // ----DOWN----
     if(this.pressedKey === "down" && this.y < 400){//x<400 checks the right edge whith player in the center of the square

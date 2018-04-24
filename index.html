@@ -10,14 +10,12 @@
 </head>
 <body>
     <!-- Intro Modal -->
-    <div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="introModal" tabindex="-1" role="dialog"  aria-hidden="true"data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog  modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLongTitle">Select Character</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -56,13 +54,24 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 instructions">
-                <h2>Instructions</h2>
-                <p class="text-justify"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rhoncus eget magna ac tincidunt. Etiam laoreet lacus magna, a volutpat lorem convallis vitae. Nulla scelerisque lacinia leo et imperdiet. 
-                    In luctus turpis eget sapien vulputate molestie. Fusce sit amet justo varius, aliquet leo ut, interdum orci. Phasellus scelerisque porttitor cursus. Aliquam dolor mi, rutrum sed orci id, egestas finibus velit.
-                    Sed neque tortor, tincidunt ac tempus nec, fringilla at ex. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+            <div class="col-md-6 ">
+               <div class="instructions">
+                <h2>Welcome</h2>
+                <p class="text-justify"> 
+                    Welcome to this simple but fun Arcade Game. The objective is to get your character to the water
+                    , once you reach the top edge of the screen you will get a congratulation screen. Remember you only have 3 lives
+                    to complete the game.
+                <h3>Instructions</h3>
+                <ol>
+                    <li>Select your character using the pointer</li>
+                    <li>Use the arrow keys in your keyboard to move your character. <br><span ><img src="images/keys.png" alt="arrow keys"class="keys"></span></li>
+                    <li>Avoid enemy contact, otherwise you will loose a live and your character will return to the beginning</li>
+                    <li>Reach the top edge of the screen to win the game</li>
+                    <li>Either you win or loose you will be given an option to continue with the previus selected character or to select another character, choose whatever you want but remember always to have fun!</li>
+                </ol>
                 </p>
             </div>
+        </div>
             <div class="col-md-6" id="gameCanvas">
                     <script src="js/resources.js"></script>
                     <script src="js/app.js"></script>
@@ -71,18 +80,15 @@
         </div>
      </div>
       
-      <!-- Final Modal -->
-      <div class="modal fade" id="finalModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <!-- loosing Modal -->
+      <div class="modal fade" id="finalModal" tabindex="-1" role="dialog"  aria-hidden="true"data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog  modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">Game Over</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+              </div>
             <div class="modal-body">
-              <p>You loose, want to play again?</p>
+              <p>Oh no! you loose <span><img src="images/Sad_Face_Emoji.png" alt="sad face emoji" ></span>, want to play again?</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" id="no" data-dismiss="modal">No</button>
@@ -91,6 +97,24 @@
           </div>
         </div>
       </div>
+       <!-- winning Modal -->
+       <div class="modal fade" id="winningModal" tabindex="-1" role="dialog"  aria-hidden="true"data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog  modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">You did it!<span><img src="images/StarIcon.png" alt="star emoji" ></span></h5>
+                  </div>
+                <div class="modal-body">
+                  <p>You beat the enemy, good job!!</p>
+                  <p>Want to play again?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" id="no" data-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-success" id="yes" data-dismiss="modal">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
