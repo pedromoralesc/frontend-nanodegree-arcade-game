@@ -4,7 +4,7 @@ This is the tipical froger game  we played as children, is simple but really fun
 
 ## Objective
 Welcome to this simple but fun Arcade Game. The objective is to get your character to the water , once you reach the top edge of the screen you will get a congratulation screen. Remember you only have 3 lives to complete the game. 
-![snippet](imgages/screenShot.png)
+![snippet](images/screenShot.png)
 
 ## Instructions
 
