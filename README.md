@@ -1,6 +1,8 @@
 
 # Udacity Arcade Game
 This is the tipical froger game  we played as children, is simple but really fun!.
+## Instalation
+To run the application please download or fork the project from my [Github](https://github.com/pedromoralesc/frontend-nanodegree-arcade-game) account and then proceed to open the index.html file in the internet browser of your choice. Follow the instructions bellow and enjoy!.
 
 ## Objective
 Welcome to this simple but fun Arcade Game. The objective is to get your character to the water , once you reach the top edge of the screen you will get a congratulation screen. Remember you only have 3 lives to complete the game. 
